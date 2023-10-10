@@ -8,26 +8,25 @@ import React from "react";
 - input should be min and max length of 5
 */
 
-function SearchInput({textInput, setTextInput}) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(textInput)
-    setTextInput(" ")
-  }
+function SearchInput({ textInput, setTextInput, handleSubmit }) {
 
   return (
-    <form onSubmit={(event) => handleSubmit(event)} className="guess-input-wrapper">
+    <form
+      onSubmit={(event) => handleSubmit(event)}
+      className="guess-input-wrapper"
+    >
       <label htmlFor="guess-input">Enter guess: </label>
-      <input id="guess-input"
-       maxLength={5}
-       minLength={5}
-      //  pattern="[A-Z]{5, 5}"
-      type="text"
-      value={textInput}
-      onChange={(event) => {
-        const newText = event.target.value.toUpperCase();
-        setTextInput(newText)
-      }}
+      <input
+        id="guess-input"
+        maxLength={5}
+        minLength={5}
+        //  pattern="[A-Z]{5, 5}"
+        type="text"
+        value={textInput}
+        onChange={(event) => {
+          const newText = event.target.value.toUpperCase();
+          setTextInput(newText);
+        }}
       />
     </form>
   );
