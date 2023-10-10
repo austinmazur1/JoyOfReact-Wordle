@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
-import { sample } from '../../utils';
-import { WORDS } from '../../data';
+import { sample } from "../../utils";
+import { WORDS } from "../../data";
+import SearchInput from "../SearchInput/SearchInput";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -9,7 +10,9 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  return <>Put a game here!</>;
+  const [textInput, setTextInput] = useState("");
+
+  return <SearchInput textInput={textInput} setTextInput={setTextInput} />;
 }
 
 export default Game;
