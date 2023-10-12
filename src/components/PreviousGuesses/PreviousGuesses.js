@@ -1,21 +1,20 @@
 import React from "react";
-import GuessComponent from "../GuessComponent/GuessComponent"
+import GuessComponent from "../GuessComponent/GuessComponent";
+import { range } from "../../utils";
 
-function PreviousGuesses({pastGuesses}) {
+function PreviousGuesses({ pastGuesses }) {
   return (
     <>
-    <GuessComponent />
-    <GuessComponent />
-    <GuessComponent />
-    <GuessComponent />
-    <GuessComponent />
-    <div className="guess-results">
-      {pastGuesses.map((guess) => (
+      <div className="guess-results">
+        {/* {pastGuesses.map((guess) => (
         <p key={guess} className="guess">
           {guess}
         </p>
-      ))}
-    </div>
+      ))} */}
+        {range(pastGuesses).map((el) => (
+          <GuessComponent prevGuesses={el} />
+        ))}
+      </div>
     </>
   );
 }

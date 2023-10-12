@@ -4,7 +4,8 @@ import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import SearchInput from "../SearchInput/SearchInput";
 import PreviousGuesses from "../PreviousGuesses/PreviousGuesses";
-// import GuessComponent from "../GuessComponent/GuessComponent"
+import GuessComponent from "../GuessComponent/GuessComponent";
+import { range } from "../../utils";
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -25,6 +26,11 @@ function Game() {
   return (
     <>
       {pastGuesses.length > 0 && <PreviousGuesses pastGuesses={pastGuesses} />}
+      {/* <GuessComponent prevGuesses={pastGuesses}/>
+      <GuessComponent />
+      <GuessComponent />
+      <GuessComponent />
+      <GuessComponent /> */}
       <SearchInput
         textInput={textInput}
         setTextInput={setTextInput}
