@@ -25,12 +25,11 @@ function Game() {
 
   return (
     <>
-      {pastGuesses.length > 0 && <PreviousGuesses pastGuesses={pastGuesses} />}
-      {/* <GuessComponent prevGuesses={pastGuesses}/>
-      <GuessComponent />
-      <GuessComponent />
-      <GuessComponent />
-      <GuessComponent /> */}
+    {range(1, 6).map((num) => {
+      return (
+        <GuessComponent prevGuesses={pastGuesses} />
+      )
+    })}
       <SearchInput
         textInput={textInput}
         setTextInput={setTextInput}
