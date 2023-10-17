@@ -1,14 +1,15 @@
-import React from "react";
-/* TODO 
-- create a function that handles submit
-- prevent for submit default
-- create state or pass the state prop
-- reset state on submit
-- text to be converted to all caps
-- input should be min and max length of 5
-*/
+import React, { useState } from "react";
 
-function SearchInput({ textInput, setTextInput, handleSubmit }) {
+function SearchInput({ handleSubmitGuess }) {
+  const [textInput, setTextInput] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    handleSubmitGuess(textInput);
+
+    setTextInput(" ");
+  };
 
   return (
     <form
@@ -18,10 +19,12 @@ function SearchInput({ textInput, setTextInput, handleSubmit }) {
       <label htmlFor="guess-input">Enter guess: </label>
       <input
         id="guess-input"
+        required
         maxLength={5}
         minLength={5}
-        //  pattern="[A-Z]{5, 5}"
         type="text"
+        pattern="[a-zA-Z]{5}"
+        title="5 letter word"
         value={textInput}
         onChange={(event) => {
           const newText = event.target.value.toUpperCase();

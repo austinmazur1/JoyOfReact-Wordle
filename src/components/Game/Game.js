@@ -12,29 +12,22 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [textInput, setTextInput] = useState("");
   const [pastGuesses, setPastGuesses] = useState([]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(textInput);
-    setTextInput(" ");
-    const newArray = [...pastGuesses, textInput];
-    setPastGuesses(newArray);
+  const handleSubmitGuess = (guess) => {
+    setPastGuesses([...pastGuesses, guess]);
   };
 
   return (
     <>
-    {range(1, 6).map((num) => {
+      {/* {range(1, 6).map((num) => {
       return (
         <GuessComponent prevGuesses={pastGuesses} />
       )
-    })}
-      <SearchInput
-        textInput={textInput}
-        setTextInput={setTextInput}
-        handleSubmit={handleSubmit}
-      />
+    })} */}
+      <PreviousGuesses pastGuesses={pastGuesses} />
+
+      <SearchInput handleSubmitGuess={handleSubmitGuess} />
     </>
   );
 }
