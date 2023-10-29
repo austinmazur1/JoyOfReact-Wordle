@@ -6,6 +6,7 @@ import SearchInput from "../SearchInput/SearchInput";
 import PreviousGuesses from "../PreviousGuesses/PreviousGuesses";
 import GuessComponent from "../GuessComponent/GuessComponent";
 import { range } from "../../utils";
+import { checkGuess } from "../../game-helpers";
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -17,15 +18,10 @@ function Game() {
   const handleSubmitGuess = (guess) => {
     setPastGuesses([...pastGuesses, guess]);
   };
-
+// checkGuess('CREAM', answer);
   return (
     <>
-      {/* {range(1, 6).map((num) => {
-      return (
-        <GuessComponent prevGuesses={pastGuesses} />
-      )
-    })} */}
-      <PreviousGuesses pastGuesses={pastGuesses} />
+      <PreviousGuesses pastGuesses={pastGuesses} answer={answer} />
 
       <SearchInput handleSubmitGuess={handleSubmitGuess} />
     </>

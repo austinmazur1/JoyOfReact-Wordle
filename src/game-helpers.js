@@ -50,6 +50,6 @@ export function checkGuess(guess, answer) {
       status,
     };
   }
-
+console.log('result from game-helper',result)
   return result;
 }
