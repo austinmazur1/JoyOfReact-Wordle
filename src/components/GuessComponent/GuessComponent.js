@@ -2,31 +2,22 @@ import React, { useEffect, useState } from "react";
 import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
 
+const Cell = ({ letter, status }) => {
+  const className = status ? `cell ${status}` : "cell";
+
+  return <span className={className}>{letter}</span>;
+};
+
 function GuessComponent({ prevGuesses, answer }) {
-  const [status, setStatus] = useState("");
-
-  const handleClassName = () => {
-    const checkedGuess = checkGuess(prevGuesses, answer);
-
-    console.log(
-      checkedGuess?.map((el) => {
-        return el.status;
-      })
-    );
-    return "cell";
-  };
-
-  
-  useEffect(() => {
-    handleClassName();
-  }, [prevGuesses]);
+  const result = checkGuess(prevGuesses, answer);
 
   return (
     <p className="guess">
       {range(5).map((num) => (
-        <span key={num} className="cell">
-          {prevGuesses ? prevGuesses[num] : undefined}
-        </span>
+        <Cell key={num} 
+        letter={result ? result[num].letter : undefined}
+        status={result ? result[num].status : undefined}
+        />
       ))}
     </p>
   );
