@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SearchInput({ handleSubmitGuess }) {
+function SearchInput({ handleSubmitGuess, gameOver }) {
   const [textInput, setTextInput] = useState("");
 
   const handleSubmit = (event) => {
@@ -26,6 +26,7 @@ function SearchInput({ handleSubmitGuess }) {
         pattern="[a-zA-Z]{5}"
         title="5 letter word"
         value={textInput}
+        disabled={gameOver}
         onChange={(event) => {
           const newText = event.target.value.toUpperCase();
           setTextInput(newText);

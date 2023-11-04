@@ -14,9 +14,10 @@ function GuessComponent({ prevGuesses, answer }) {
   return (
     <p className="guess">
       {range(5).map((num) => (
-        <Cell key={num} 
-        letter={result ? result[num].letter : undefined}
-        status={result ? result[num].status : undefined}
+        <Cell
+          key={num}
+          letter={result ? result[num].letter : undefined}
+          status={result ? result[num].status : undefined}
         />
       ))}
     </p>

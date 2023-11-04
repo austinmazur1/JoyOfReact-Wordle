@@ -14,22 +14,27 @@ console.info({ answer });
 
 function Game() {
   const [pastGuesses, setPastGuesses] = useState([]);
+  const [gameStatus, setGameSatus] = useState('running')
   const [gameOver, setGameOver] = useState(false)
-  const [userWon, setUserWon] = useState(false)
+  
 
   const handleSubmitGuess = (guess) => {
     setPastGuesses([...pastGuesses, guess]);
-    if (pastGuesses.length === 5) {
+    console.log(pastGuesses)
+    if (guess === answer) {
+      setGameSatus('won')
       setGameOver(true)
-
+    } else {
+      setGameSatus('lost')
+      setGameOver(true)
     }
   };
 
   return (
     <>
-     {gameOver && <Banner win={userWon} />}
+     {gameOver && <Banner answer={answer} gameStatus={gameStatus} numOfGuesses/>}
       <PreviousGuesses pastGuesses={pastGuesses} answer={answer} />
-      <SearchInput handleSubmitGuess={handleSubmitGuess} />
+      <SearchInput handleSubmitGuess={handleSubmitGuess} gameOver={gameOver}/>
     </>
   );
 }
