@@ -5,36 +5,36 @@ import { WORDS } from "../../data";
 import SearchInput from "../SearchInput/SearchInput";
 import PreviousGuesses from "../PreviousGuesses/PreviousGuesses";
 import Banner from "../Banner/Banner";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
+// TODO Create banner 'primitive' component and then create a win and loose component and render those in here
 
 
 function Game() {
   const [pastGuesses, setPastGuesses] = useState([]);
-  const [gameStatus, setGameSatus] = useState('running')
-  const [gameOver, setGameOver] = useState(false)
+  const [gameStatus, setGameStatus] = useState('running')
   
 
   const handleSubmitGuess = (guess) => {
-    setPastGuesses([...pastGuesses, guess]);
-    console.log(pastGuesses)
+    const guesses = [...pastGuesses, guess] 
+    setPastGuesses(guesses);
     if (guess === answer) {
-      setGameSatus('won')
-      setGameOver(true)
-    } else {
-      setGameSatus('lost')
-      setGameOver(true)
+      setGameStatus('won')
+    } else if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
+      setGameStatus('lost')
     }
   };
 
   return (
     <>
-     {gameOver && <Banner answer={answer} gameStatus={gameStatus} numOfGuesses/>}
+    {gameStatus}
+     {/* {gameOver && <Banner answer={answer} gameStatus={gameStatus} numOfGuesses/>} */}
       <PreviousGuesses pastGuesses={pastGuesses} answer={answer} />
-      <SearchInput handleSubmitGuess={handleSubmitGuess} gameOver={gameOver}/>
+      <SearchInput handleSubmitGuess={handleSubmitGuess} gameStatus={gameStatus}/>
     </>
   );
 }
