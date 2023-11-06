@@ -50,6 +50,5 @@ export function checkGuess(guess, answer) {
       status,
     };
   }
-
   return result;
 }
