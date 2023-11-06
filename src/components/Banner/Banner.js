@@ -1,21 +1,11 @@
-function Banner({ gameStatus, numOfGuesses, answer}) {
+//Primitive, truly reusable component. Creating a component like this
+// Truly makes it modular and leverages what makes React so special.
+// We could use this banner for any type of component.
+function Banner({children, status}) {
   return (
-    <>
-      {gameStatus === 'won' ? (
-        <div className="happy banner">
-          <p>
-            <strong>Congratulations!</strong> Got it in
-            <strong>3 guesses</strong>.
-          </p>
-        </div>
-      ) : (
-        <div className="sad banner">
-          <p>
-            Sorry, the correct answer is <strong>{answer}</strong>.
-          </p>
-        </div>
-      )}
-    </>
+    <div className={`banner ${status}`}>
+     {children}
+    </div>
   );
 }
 
